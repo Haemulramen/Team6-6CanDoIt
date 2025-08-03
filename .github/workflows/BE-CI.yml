@@ -46,3 +46,4 @@ jobs:
         run: |
           cd backend
           ./gradlew test
+# CI 동작 타이밍 테스튼
