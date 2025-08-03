@@ -22,17 +22,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-          cache: gradle       # ~/.gradle 캐시 자동 재사용
-
-      - name: Cache Gradle packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            gradle-${{ runner.os }}-
+          cache: gradle
 
       - name: Grant execute permission to gradlew
         run: chmod +x backend/gradlew
@@ -40,10 +30,4 @@ jobs:
       - name: Build with Gradle, without tests
         run: |
           cd backend
-          ./gradlew build -x test
-
-      - name: Run tests
-        run: |
-          cd backend
-          ./gradlew test
-# CI 동작 타이밍 테스튼
+          ./gradlew build
